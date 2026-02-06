@@ -59,9 +59,9 @@
             <h1 class="title is-1 publication-title">
               MambaVF: State Space Model for Efficient Video Fusion
             </h1>
-            <h3 class="title is-3">
+            <!-- <h3 class="title is-3">
               <b>NeurIPS 2025 (<span style="color: red;">Spotlight</span>)</b>
-            </h3>
+            </h3> -->
 
             <!-- Authors -->
             <div class="is-size-5 publication-authors">
@@ -70,29 +70,25 @@
                   Zixiang Zhao</a><sup>1</sup>,
               </span>
               <span class="author-block">
-                <a href="https://haowenbai.github.io/" rel="noopener noreferrer">
-                  Haowen Bai</a><sup>2</sup>,
-              </span>
-              <span class="author-block">
-                <a href="http://www.kebingxin.com/" rel="noopener noreferrer">
-                  Bingxin Ke</a><sup>1</sup>,
-              </span>
-              <span class="author-block">
                 <a href="https://openreview.net/profile?id=~Yukun_Cui2" rel="noopener noreferrer">
                   Yukun Cui</a><sup>2</sup>,
               </span>
-              <br />
               <span class="author-block">
                 <a href="https://openreview.net/profile?id=~Lilun_Deng1" rel="noopener noreferrer">
                   Lilun Deng</a><sup>2</sup>,
               </span>
+                            <!-- <br /> -->
               <span class="author-block">
-                <a href="https://yulunzhang.com/" rel="noopener noreferrer">
-                  Yulun Zhang</a><sup>3</sup>,
+                <a href="https://haowenbai.github.io/" rel="noopener noreferrer">
+                  Haowen Bai</a><sup>2</sup>,
               </span>
               <span class="author-block">
-                <a href="https://cszn.github.io/" rel="noopener noreferrer">
-                  Kai Zhang</a><sup>4</sup>,
+                <a href="https://htqin.github.io/" rel="noopener noreferrer">
+                  Haotong Qin</a><sup>1</sup>,
+              </span>
+              <span class="author-block">
+                <a href="https://hi-fengtao.github.io/" rel="noopener noreferrer">
+                  Tao Feng</a><sup>3</sup>,
               </span>
               <span class="author-block">
                 <a href="https://scholar.google.com/citations?user=FZuNgqIAAAAJ&hl=en" rel="noopener noreferrer">
@@ -100,20 +96,20 @@
               </span>
             </div>
             <!-- Affiliations -->
-            <div class="is-size-5 publication-authors">
+            <div class="is-size-5 publication-authors" style="margin-top: 12px;">
               <span class="author-block"><sup>1</sup>&nbsp;ETH Zürich</span>&nbsp;
               <span class="author-block"><sup>2</sup>&nbsp;Xi'an Jiaotong University</span>
             </div>
             <div class="is-size-5 publication-authors">
-              <span class="author-block"><sup>3</sup>&nbsp;Shanghai Jiao Tong University</span>&nbsp;
-              <span class="author-block"><sup>4</sup>&nbsp;Nanjing University</span>
+              <span class="author-block"><sup>3</sup>&nbsp;Nanyang Technological University</span>&nbsp;
+              <span class="author-block"><sup>4</sup>&nbsp;Tsinghua University</span>
             </div>
             <!-- Buttons -->
             <div class="column has-text-centered">
               <!-- Paper Link. -->
               <div class="publication-links">
                 <span class="link-block">
-                  <a href="https://arxiv.org/abs/2505.19858" rel="noopener noreferrer"
+                  <a href="https://arxiv.org/abs/2602.06017" rel="noopener noreferrer"
                     class="external-link button is-normal is-rounded is-dark">
                     <span class="icon">
                       <i class="fas fa-file-pdf"></i>
@@ -123,12 +119,12 @@
                 </span>
                 <!-- Code Link. -->
                 <span class="link-block">
-                  <a href="https://github.com/Zhaozixiang1228/VF-Bench" rel="noopener noreferrer"
+                  <a href="https://github.com/Zhaozixiang1228/VF-MambaVF" rel="noopener noreferrer"
                     class="external-link button is-normal is-rounded is-dark">
                     <span class="icon">
                       <i class="fab fa-github"></i>
                     </span>
-                    <span>Code</span>
+                    <span>Code (Coming Soon)</span>
                     <!-- <img
                       src="https://img.shields.io/github/stars/prs-eth/rollingdepth?style=for-the-badge&label=&color=333333&labelColor=333333"
                       alt="GitHub stars" style="margin-top: 3px" />
@@ -136,13 +132,13 @@
                   </a>
                 </span>
                 <!-- Dataset link -->
-                <span class="link-block">
+                <!-- <span class="link-block">
                   <a href="https://share.phys.ethz.ch/~pf/zixiangdata/vfbench/" target="_blank" class="external-link button is-normal is-rounded is-dark">
                     <span class="icon">
                       <i class="fa fa-file-archive"></i>
                     </span>
                     <span>Dataset</span>
-                  </a> </span>
+                  </a> </span> -->
               </div>
             </div>
           </div>
@@ -159,10 +155,8 @@
           <img src="images/teaser.jpg" border="0" width="100%">
         </center>
         <h2 class="subtitle has-text-centered">
-          Overview of the main contributions of this paper, including the <b>V</b>ideo <b>F</b>usion <b>Bench</b>mark
-          <b>(VF-Bench)</b>, the <b>Uni</b>fied
-          <b>V</b>ideo <b>F</b>usion framework <b>(UniVF)</b>, dedicated training losses and evaluation protocol for
-          video fusion.
+          Compared with <a href="https://vfbench.github.io/" target="_blank" rel="noopener noreferrer">UniVF (NeurIPS'25)</a>, our MambaVF not only attains state-of-the-art performance on VF-Bench, but also requires only <b>7.75%</b> of the parameters and <b>11.21%</b> of the FLOPs,
+          while achieving a <b>2.1×</b> speedup.
         </h2>
       </div>
     </div>
@@ -177,23 +171,17 @@
           <h2 class="title is-3">Abstract</h2>
           <div class="content has-text-justified">
             <p>
-              The real world is dynamic, yet most image fusion methods process static frames independently, ignoring
-              temporal
-              correlations in videos and leading to flickering and temporal inconsistency. To address this, we propose
-              <b>Uni</b>fied <b>V</b>ideo
-              <b>F</b>usion <b>(UniVF)</b>, a novel framework for temporally coherent video fusion that leverages
-              multi-frame learning and optical
-              flow-based feature warping for informative, temporally coherent video fusion. To support its development,
-              we also
-              introduce <b>V</b>ideo <b>F</b>usion <b>Bench</b>mark <b>(VF-Bench)</b>, the first comprehensive benchmark
-              covering four video fusion tasks:
-              multi-exposure, multi-focus, infrared-visible, and medical fusion. VF-Bench provides high-quality,
-              well-aligned video
-              pairs obtained through synthetic data generation and rigorous curation from existing datasets, with a
-              unified evaluation
-              protocol that jointly assesses the spatial quality and temporal consistency of video fusion. Extensive
-              experiments show
-              that UniVF achieves state-of-the-art results across all tasks on VF-Bench.
+              Video fusion is a fundamental technique in various video processing tasks. However, existing video fusion methods
+              heavily rely on optical flow estimation and feature warping, resulting in severe computational overhead and limited
+              scalability. This paper presents <b>MambaVF</b>, an efficient video fusion framework based on state space models (SSMs) that
+              performs temporal modeling without explicit motion estimation. First, by reformulating video fusion as a sequential
+              state update process, MambaVF captures long-range temporal dependencies with linear complexity while significantly
+              reducing computation and memory costs. Second, MambaVF proposes a lightweight SSM-based fusion module that replaces
+              conventional flow-guided alignment via a spatio-temporal bidirectional scanning mechanism. This module enables efficient
+              information aggregation across frames. Extensive experiments across multiple benchmarks demonstrate that our MambaVF
+              achieves state-of-the-art performance in multi-exposure, multi-focus, infrared-visible, and medical video fusion tasks.
+              We highlight that MambaVF enjoys high efficiency, reducing up to <b>92.25%</b> of parameters and <b>88.79%</b> of computational FLOPs
+              and a <b>2.1×</b> speedup compared to existing methods.
             </p>
           </div>
         </div>
@@ -277,207 +265,122 @@
           <!-- UniVF architecture -->
           <br>
           <div class="content has-text-justified">
-            <h2 class="title is-3 has-text-centered">How UniVF Works</h2>
+            <h2 class="title is-3 has-text-centered">How MambaVF Works</h2>
             <img id="method_inference" width="100%" src="images/method.jpg" alt="Method" />
             <p>
-              Detailed illustration of our UniVF architecture.
+              Detailed illustration of our MambaVF architecture.
             </p>
-
-            <!-- VF-Bench Pipeline -->
-            <h2 class="title is-3 has-text-centered">
-              How VF-Bench Was Built
-            </h2>
-            <img id="method_inference" width="100%" src="images/data_pipeline.jpg" alt="Method" />
-            <p>The proposed data generation paradigms for (a) multi-exposure video pair and (b) multi-focus video
-              pair for our VF-Bench.</p>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="section hero is-light">
-    <div class="container is-max-desktop">
-      <div class="columns is-centered has-text-centered">
-        <div class="column is-four-fifths">
-          <h2 class="title is-3 has-text-centered">
-            VF-Bench Gallery
-          </h2>
-          <!-- 图像展览部分 -->
-          <div class="content has-text-centered">
-            <img id="galleryImage_a1" width="100%" src="images/vis-YouTube.png" alt="VF-Bench Gallery Image" />
-            <p id="imageTitle_a1" class="mt-2"><b>Multi-Exposure Video Fusion Branch</b></p>
+<section class="hero is-light section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3 has-text-centered">
+          Qualitative Video Comparison
+        </h2>
+        <video id="myVideo_a3" muted autoplay="autoplay" loop="loop" width="100%" controls playsinline></video>
+        <div width="100%" class="pages" id="page_a3" style="margin-top: 1rem;">
+          <img src="./images/arrow-left-round.svg" style="cursor: pointer;" />
+          <img src="./images/circle-small.svg" style="cursor: pointer;" />
+          <img src="./images/circle-small.svg" style="cursor: pointer;" />
+          <img src="./images/circle-small.svg" style="cursor: pointer;" />
+          <img src="./images/circle-small.svg" style="cursor: pointer;" />
+          <img src="./images/circle-small.svg" style="cursor: pointer;" />
+          <img src="./images/arrow-right-round.svg" style="cursor: pointer;" />
+        </div>
+        <script>
+          $(function () {
+            let src = [
+              "video/comparision_video/Multi-exposure-Video-Fusion-1.mp4",
+              "video/comparision_video/Multi-exposure-Video-Fusion-2.mp4",
+              "video/comparision_video/Multi-focus-Video-Fusion.mp4",
+              "video/comparision_video/Infrared-Visible-Video-Fusion.mp4",
+              "video/comparision_video/Medical-Video-Fusion.mp4",
+            ];
+            const player = $("#myVideo_a3")[0];
+            const button = $("#page_a3 img");
+            const size = src.length;
+            let index = 0;
+            let old = -1;
+            // 获取正确的按钮图标路径
+            const btn_selected_src = $("#btn_selected").attr("src");
+            const btn_normal_src = $("#btn_normal").attr("src");
 
-            <!-- 小圆点和左右箭头 -->
-            <div class="pages" id="img_page_a1" style="margin-top: 1rem;">
-              <img src="./images/arrow-left-round.svg" style="cursor: pointer;" />
-              <img src="./images/circle-small.svg" style="cursor: pointer;" />
-              <img src="./images/circle-small.svg" style="cursor: pointer;" />
-              <img src="./images/circle-small.svg" style="cursor: pointer;" />
-              <img src="./images/circle-small.svg" style="cursor: pointer;" />
-              <img src="./images/arrow-right-round.svg" style="cursor: pointer;" />
-            </div>
-          </div>
-
-          <script>
-            $(function () {
-              let src = [
-                "images/vis-YouTube.png",
-                "images/vis-DAVIS.png",
-                "images/vis-VTMOT.png",
-                "images/vis-Harvard.png",
-              ];
-              let titles = [
-                "Multi-Exposure Video Fusion Branch",
-                "Multi-Focus Video Fusion Branch",
-                "Infrared-Visible Video Fusion Branch",
-                "Medical Image Video Fusion Branch"
-              ];
-              const viewer = $("#galleryImage_a1");
-              const titlebox = $("#imageTitle_a1");
-              const button = $("#img_page_a1 img");
-              const size = src.length;
-              let index = 0;
-              let old = -1;
-
-              function go() {
-                if (old >= 0) {
-                  button[old + 1].src = $("#btn_normal").attr("src");
-                }
-                button[index + 1].src = $("#btn_selected").attr("src");
-                old = index;
-                viewer.attr("src", src[index]);
-                titlebox.text(titles[index]);
+            function go() {
+              if (old >= 0) {
+                // 使用获取到的路径
+                button[old + 1].src = btn_normal_src;
               }
-
-              go();
-
-              button.click(function () {
-                let x = $(this).index();
-                if (x == 0) {
-                  if (index > 0) {
-                    index--;
-                    go();
-                  }
-                } else if (x == size + 1) {
-                  if (index < size - 1) {
-                    index++;
-                    go();
-                  }
-                } else if (x > 0 && x <= size) {
-                  index = x - 1;
+              button[index + 1].src = btn_selected_src;
+              old = index;
+              player.src = src[index];
+              player.load();
+            }
+            go();
+            button.click(function () {
+              let x = $(this).index();
+              if (x == 0) {
+                if (index > 0) {
+                  index--;
                   go();
                 }
-              });
-            });
-          </script>
-        </div>
-      </div>
-    </div>
-  </section>
-
-
-  <!-- Experimental Results -->
-  <section class="section pt-0">
-    <div class="container is-max-desktop">
-      <div class="columns is-centered has-text-centered">
-        <div class="column is-four-fifths">
-          <br>
-          <!-- Quantitative table -->
-          <h2 class="title is-3 has-text-centered">
-            Quantitative comparison with other methods
-          </h2>
-
-          <p>
-            Quantitative evaluation results for the Multi-Exposure Fusion and Multi-Focus Fusion task. The red and blue
-            highlights indicate the highest and second-highest scores
-          </p>
-
-          <img id="comparison" width="100%" src="images/table1.png" alt="Comparison with other methods" />
-
-          <p>
-            Quantitative evaluation results for the Infrared-Visible Fusion and Medical Video Fusion task. The red and
-            blue highlights indicate the highest and second-highest scores
-          </p>
-
-          <img id="comparison" width="100%" src="images/table2.png" alt="Comparison with other methods" />
-
-          <p>
-            Quantitative evaluation results for the low-resolution Multi-Exposure Fusion (540p) and Multi-Focus Fusion (480p) task. The red and
-            blue highlights indicate the highest and second-highest scores
-          </p>
-
-          <img id="comparison" width="100%" src="images/table3.png" alt="Comparison with other methods" />
-
-          <p class="mt-5">
-            Refer to the main paper linked above for more details on qualitative, quantitative, and ablation studies.
-          </p>
-
-          <br>
-          <h2 class="title has-text-centered">
-            Qualitative Video Comparison
-          </h2>
-          <!-- For a new group, change all `_a3` to `_a3` -->
-          <video id="myVideo_a3" muted autoplay="autoplay" loop="loop" width="100%" controls playsinline></video>
-          <div width="100%" class="pages" id="page_a3">
-            <img src="./images/arrow-left-round.svg" />
-            <img src="./images/circle-small.svg" />
-            <img src="./images/circle-small.svg" />
-            <img src="./images/circle-small.svg" />
-            <img src="./images/circle-small.svg" />
-            <img src="./images/circle-small.svg" />
-            <img src="./images/arrow-right-round.svg" />
-          </div>
-          <script>
-            $(function () {
-              let src = [
-                "video/comparision_video/Multi-exposure-Video-Fusion-1.mp4",
-                "video/comparision_video/Multi-exposure-Video-Fusion-2.mp4",
-                "video/comparision_video/Multi-focus-Video-Fusion.mp4",
-                "video/comparision_video/Infrared-Visible-Video-Fusion.mp4",
-                "video/comparision_video/Medical-Video-Fusion.mp4",
-              ];
-              const player = $("#myVideo_a3")[0];
-              const button = $("#page_a3 img");
-              const size = src.length;
-              let index = 0;
-              let old = -1;
-              function go() {
-                if (old >= 0) {
-                  button[old + 1].src = btn_normal.src;
-                }
-                button[index + 1].src = btn_selected.src;
-                old = index;
-                player.src = src[index];
-                player.load();
-              }
-              go();
-              button.click(function () {
-                let x = $(this).index();
-                if (x == 0) {
-                  if (index > 0) {
-                    index--;
-                    go();
-                  }
-                } else if (x == size + 1) {
-                  if (index < size - 1) {
-                    index++;
-                    go();
-                  }
-                } else if (x > 0 && x <= size) {
-                  index = x - 1;
+              } else if (x == size + 1) {
+                if (index < size - 1) {
+                  index++;
                   go();
                 }
-              });
+              } else if (x > 0 && x <= size) {
+                index = x - 1;
+                go();
+              }
             });
-          </script>
-        </div>
+          });
+        </script>
       </div>
     </div>
-  </section>
+  </div>
+</section>
+
+<section class="section pt-0">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <br>
+        <h2 class="title is-3 has-text-centered">
+          Quantitative comparison with other methods
+        </h2>
+
+        <p class="mt-4">
+          Quantitative evaluation results for the Multi-Exposure Fusion (540p) and Multi-Focus Fusion (480p) task. The red and blue
+          highlights indicate the highest and second-highest scores
+        </p>
+
+        <img id="comparison1" width="100%" src="images/table1.png" alt="Comparison table 1" />
+
+        <p class="mt-4">
+          Quantitative evaluation results for the Infrared-Visible Fusion and Medical Video Fusion task. The red and
+          blue highlights indicate the highest and second-highest scores
+        </p>
+
+        <img id="comparison2" width="100%" src="images/table2.png" alt="Comparison table 2" />
+
+        <p class="mt-5 mb-5">
+          Refer to the main paper linked above for more details on qualitative, quantitative, and ablation studies.
+        </p>
+
+      </div>
+    </div>
+  </div>
+</section>
+<section class="hero teaser is-small">
 
   <!-- Qualitative Image Comparison -->
-  <section class="hero teaser is-small">
+  <section class="hero is-light section">
     <div class="container is-max-desktop has-text-centered">
       <div class="hero-body">
         <h2 class="title has-text-centered">
@@ -485,7 +388,7 @@
         </h2>
         <!-- 图像展览部分 -->
         <div class="content has-text-centered">
-          <img id="galleryImage_a2" width="100%" src="images/fusion-Youtube.png" alt="VF-Bench Gallery Image" />
+          <img id="galleryImage_a2" width="100%" src="images/fusion-Youtube.jpg" alt="VF-Bench Gallery Image" />
           <p id="imageTitle_a2" class="mt-2"><b>Multi-Exposure Video Fusion Comparison</b></p>
 
           <!-- 小圆点和左右箭头 -->
@@ -502,10 +405,10 @@
         <script>
           $(function () {
             let src = [
-              "images/fusion-Youtube.png",
-              "images/fusion-DAVIS.png",
-              "images/fusion-VTMOT.png",
-              "images/fusion-Havard.png",
+              "images/fusion-Youtube.jpg",
+              "images/fusion-DAVIS.jpg",
+              "images/fusion-VTMOT.jpg",
+              "images/fusion-Havard.jpg",
             ];
             let titles = [
               "Multi-Exposure Video Fusion Comparison",
@@ -595,12 +498,11 @@
       <h2 class="title">Citation</h2>
       <pre class="selectable">
 <code>
-  @InProceedings{zhao2025unified,
-    title={A Unified Solution to Video Fusion: From Multi-Frame Learning to Benchmarking},
-    author={Zhao, Zixiang and Bai, Haowen and Ke, Bingxin and Cui, Yukun and Deng, Lilun and Zhang, Yulun and Zhang, Kai and
-    Schindler, Konrad},
-    booktitle = {Advances in Neural Information Processing Systems (NeurIPS)},
-    year={2025}
+  @article{zhao2026mambavfstatespacemodel,
+    title={MambaVF: State Space Model for Efficient Video Fusion},
+    author={Zixiang Zhao and Yukun Cui and Lilun Deng and Haowen Bai and Haotong Qin and Tao Feng and Konrad Schindler},
+    journal={arXiv preprint arXiv:2602.06017},
+    year={2026},
   }
 </code>
 </pre>
