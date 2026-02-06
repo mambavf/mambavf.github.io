@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="description" content="MambaVF: State Space Model for Efficient Video Fusion" />
+  <!-- Umami Analytics -->
+  <script defer src="https://cloud.umami.is/script.js" data-website-id="0c592275-ef96-4f5b-ab28-1d4ef76cb8ac"></script>
+  <meta name="keywords" content="image fusion, video fusion, low-level vision" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>MambaVF
+  </title>
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🐍</text></svg>" />
+
+  <!-- google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet" />
+
+  <link rel="stylesheet" href="./css/bulma.min.css" />
+  <link rel="stylesheet" href="./css/bulma-carousel.min.css" />
+  <link rel="stylesheet" href="./css/bulma-slider.min.css" />
+  <link rel="stylesheet" href="./css/twentytwenty.css" />
+  <link rel="stylesheet" href="./css/index.css" />
+  <link rel="stylesheet" href="./css/pages.css" />
+
+  <script src="./js/jquery-3.2.1.min.js"></script>
+  <script src="./js/jquery.event.move.js"></script>
+  <script src="./js/jquery.twentytwenty.js"></script>
+  <script src="./js/bulma-carousel.min.js"></script>
+  <script src="./js/bulma-slider.min.js"></script>
+  <script src="./js/fontawesome.all.min.js"></script>
+
+  <!--MathJax for Equations-->
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [
+          ["$", "$"],
+          ["\\(", "\\)"],
+        ],
+      },
+      svg: {
+        fontCache: "global",
+      },
+    };
+  </script>
+  <script type="text/javascript" id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h2 class="title is-2 publication-title">🐍 MambaVF 🐍</h2>
+            <h1 class="title is-1 publication-title">
+              MambaVF: State Space Model for Efficient Video Fusion
+            </h1>
+            <h3 class="title is-3">
+              <b>NeurIPS 2025 (<span style="color: red;">Spotlight</span>)</b>
+            </h3>
+
+            <!-- Authors -->
+            <div class="is-size-5 publication-authors">
+              <span class="author-block">
+                <a href="https://zhaozixiang1228.github.io/" rel="noopener noreferrer">
+                  Zixiang Zhao</a><sup>1</sup>,
+              </span>
+              <span class="author-block">
+                <a href="https://haowenbai.github.io/" rel="noopener noreferrer">
+                  Haowen Bai</a><sup>2</sup>,
+              </span>
+              <span class="author-block">
+                <a href="http://www.kebingxin.com/" rel="noopener noreferrer">
+                  Bingxin Ke</a><sup>1</sup>,
+              </span>
+              <span class="author-block">
+                <a href="https://openreview.net/profile?id=~Yukun_Cui2" rel="noopener noreferrer">
+                  Yukun Cui</a><sup>2</sup>,
+              </span>
+              <br />
+              <span class="author-block">
+                <a href="https://openreview.net/profile?id=~Lilun_Deng1" rel="noopener noreferrer">
+                  Lilun Deng</a><sup>2</sup>,
+              </span>
+              <span class="author-block">
+                <a href="https://yulunzhang.com/" rel="noopener noreferrer">
+                  Yulun Zhang</a><sup>3</sup>,
+              </span>
+              <span class="author-block">
+                <a href="https://cszn.github.io/" rel="noopener noreferrer">
+                  Kai Zhang</a><sup>4</sup>,
+              </span>
+              <span class="author-block">
+                <a href="https://scholar.google.com/citations?user=FZuNgqIAAAAJ&hl=en" rel="noopener noreferrer">
+                  Konrad Schindler</a><sup>1</sup>
+              </span>
+            </div>
+            <!-- Affiliations -->
+            <div class="is-size-5 publication-authors">
+              <span class="author-block"><sup>1</sup>&nbsp;ETH Zürich</span>&nbsp;
+              <span class="author-block"><sup>2</sup>&nbsp;Xi'an Jiaotong University</span>
+            </div>
+            <div class="is-size-5 publication-authors">
+              <span class="author-block"><sup>3</sup>&nbsp;Shanghai Jiao Tong University</span>&nbsp;
+              <span class="author-block"><sup>4</sup>&nbsp;Nanjing University</span>
+            </div>
+            <!-- Buttons -->
+            <div class="column has-text-centered">
+              <!-- Paper Link. -->
+              <div class="publication-links">
+                <span class="link-block">
+                  <a href="https://arxiv.org/abs/2505.19858" rel="noopener noreferrer"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                    </span>
+                    <span>Paper</span>
+                  </a>
+                </span>
+                <!-- Code Link. -->
+                <span class="link-block">
+                  <a href="https://github.com/Zhaozixiang1228/VF-Bench" rel="noopener noreferrer"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fab fa-github"></i>
+                    </span>
+                    <span>Code</span>
+                    <!-- <img
+                      src="https://img.shields.io/github/stars/prs-eth/rollingdepth?style=for-the-badge&label=&color=333333&labelColor=333333"
+                      alt="GitHub stars" style="margin-top: 3px" />
+                    <span>🌟</span> -->
+                  </a>
+                </span>
+                <!-- Dataset link -->
+                <span class="link-block">
+                  <a href="https://share.phys.ethz.ch/~pf/zixiangdata/vfbench/" target="_blank" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fa fa-file-archive"></i>
+                    </span>
+                    <span>Dataset</span>
+                  </a> </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Teaser image-->
+  <section class="hero teaser">
+    <div class="container is-max-desktop">
+      <div class="hero-body">
+        <center>
+          <img src="images/teaser.jpg" border="0" width="100%">
+        </center>
+        <h2 class="subtitle has-text-centered">
+          Overview of the main contributions of this paper, including the <b>V</b>ideo <b>F</b>usion <b>Bench</b>mark
+          <b>(VF-Bench)</b>, the <b>Uni</b>fied
+          <b>V</b>ideo <b>F</b>usion framework <b>(UniVF)</b>, dedicated training losses and evaluation protocol for
+          video fusion.
+        </h2>
+      </div>
+    </div>
+  </section>
+  <!-- End teaser image -->
+
+  <!-- Paper abstract -->
+  <section class="section hero is-light">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Abstract</h2>
+          <div class="content has-text-justified">
+            <p>
+              The real world is dynamic, yet most image fusion methods process static frames independently, ignoring
+              temporal
+              correlations in videos and leading to flickering and temporal inconsistency. To address this, we propose
+              <b>Uni</b>fied <b>V</b>ideo
+              <b>F</b>usion <b>(UniVF)</b>, a novel framework for temporally coherent video fusion that leverages
+              multi-frame learning and optical
+              flow-based feature warping for informative, temporally coherent video fusion. To support its development,
+              we also
+              introduce <b>V</b>ideo <b>F</b>usion <b>Bench</b>mark <b>(VF-Bench)</b>, the first comprehensive benchmark
+              covering four video fusion tasks:
+              multi-exposure, multi-focus, infrared-visible, and medical fusion. VF-Bench provides high-quality,
+              well-aligned video
+              pairs obtained through synthetic data generation and rigorous curation from existing datasets, with a
+              unified evaluation
+              protocol that jointly assesses the spatial quality and temporal consistency of video fusion. Extensive
+              experiments show
+              that UniVF achieves state-of-the-art results across all tasks on VF-Bench.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- End paper abstract -->
+
+  <!-- (hidden), for video switching buttons -->
+  <img id="btn_selected" src="./images/circle-shadowed.svg" style="display: none" />
+  <img id="btn_normal" src="./images/circle-small.svg" style="display: none" />
+
+  <!-- Gallery -->
+  <section class="hero teaser is-small is-light">
+    <div class="container is-max-desktop has-text-centered">
+      <div class="hero-body">
+        <h2 class="title is-3">Video Fusion Gallery</h2>
+        <!-- For a new group, change all `_a1` to `_a2` -->
+        <video id="myVideo_a1" muted autoplay="autoplay" loop="loop" width="100%" controls playsinline></video>
+        <!-- small circles, should correspond to number of videos -->
+        <div width="100%" class="pages" id="page_a1">
+          <img src="./images/arrow-left-round.svg" />
+          <img src="./images/circle-small.svg" />
+          <img src="./images/circle-small.svg" />
+          <img src="./images/circle-small.svg" />
+          <img src="./images/circle-small.svg" />
+          <img src="./images/circle-small.svg" />
+          <img src="./images/arrow-right-round.svg" />
+        </div>
+        <script>
+          $(function () {
+            let src = [
+              "video/ours/MEF1.mp4",
+              "video/ours/MEF2.mp4",
+              "video/ours/MFF.mp4",
+              "video/ours/IVF.mp4",
+              "video/ours/MVF.mp4",
+            ];
+            const player = $("#myVideo_a1")[0];
+            const button = $("#page_a1 img");
+            const size = src.length;
+            let index = 0;
+            let old = -1;
+            function go() {
+              if (old >= 0) {
+                button[old + 1].src = btn_normal.src;
+              }
+              button[index + 1].src = btn_selected.src;
+              old = index;
+              player.src = src[index];
+              player.load();
+            }
+            go();
+            button.click(function () {
+              let x = $(this).index();
+              if (x == 0) {
+                if (index > 0) {
+                  index--;
+                  go();
+                }
+              } else if (x == size + 1) {
+                if (index < size - 1) {
+                  index++;
+                  go();
+                }
+              } else if (x > 0 && x <= size) {
+                index = x - 1;
+                go();
+              }
+            });
+          });
+        </script>
+      </div>
+    </div>
+  </section>
+
+  <section class="section pt-0">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <!-- UniVF architecture -->
+          <br>
+          <div class="content has-text-justified">
+            <h2 class="title is-3 has-text-centered">How UniVF Works</h2>
+            <img id="method_inference" width="100%" src="images/method.jpg" alt="Method" />
+            <p>
+              Detailed illustration of our UniVF architecture.
+            </p>
+
+            <!-- VF-Bench Pipeline -->
+            <h2 class="title is-3 has-text-centered">
+              How VF-Bench Was Built
+            </h2>
+            <img id="method_inference" width="100%" src="images/data_pipeline.jpg" alt="Method" />
+            <p>The proposed data generation paradigms for (a) multi-exposure video pair and (b) multi-focus video
+              pair for our VF-Bench.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section hero is-light">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3 has-text-centered">
+            VF-Bench Gallery
+          </h2>
+          <!-- 图像展览部分 -->
+          <div class="content has-text-centered">
+            <img id="galleryImage_a1" width="100%" src="images/vis-YouTube.png" alt="VF-Bench Gallery Image" />
+            <p id="imageTitle_a1" class="mt-2"><b>Multi-Exposure Video Fusion Branch</b></p>
+
+            <!-- 小圆点和左右箭头 -->
+            <div class="pages" id="img_page_a1" style="margin-top: 1rem;">
+              <img src="./images/arrow-left-round.svg" style="cursor: pointer;" />
+              <img src="./images/circle-small.svg" style="cursor: pointer;" />
+              <img src="./images/circle-small.svg" style="cursor: pointer;" />
+              <img src="./images/circle-small.svg" style="cursor: pointer;" />
+              <img src="./images/circle-small.svg" style="cursor: pointer;" />
+              <img src="./images/arrow-right-round.svg" style="cursor: pointer;" />
+            </div>
+          </div>
+
+          <script>
+            $(function () {
+              let src = [
+                "images/vis-YouTube.png",
+                "images/vis-DAVIS.png",
+                "images/vis-VTMOT.png",
+                "images/vis-Harvard.png",
+              ];
+              let titles = [
+                "Multi-Exposure Video Fusion Branch",
+                "Multi-Focus Video Fusion Branch",
+                "Infrared-Visible Video Fusion Branch",
+                "Medical Image Video Fusion Branch"
+              ];
+              const viewer = $("#galleryImage_a1");
+              const titlebox = $("#imageTitle_a1");
+              const button = $("#img_page_a1 img");
+              const size = src.length;
+              let index = 0;
+              let old = -1;
+
+              function go() {
+                if (old >= 0) {
+                  button[old + 1].src = $("#btn_normal").attr("src");
+                }
+                button[index + 1].src = $("#btn_selected").attr("src");
+                old = index;
+                viewer.attr("src", src[index]);
+                titlebox.text(titles[index]);
+              }
+
+              go();
+
+              button.click(function () {
+                let x = $(this).index();
+                if (x == 0) {
+                  if (index > 0) {
+                    index--;
+                    go();
+                  }
+                } else if (x == size + 1) {
+                  if (index < size - 1) {
+                    index++;
+                    go();
+                  }
+                } else if (x > 0 && x <= size) {
+                  index = x - 1;
+                  go();
+                }
+              });
+            });
+          </script>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Experimental Results -->
+  <section class="section pt-0">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <br>
+          <!-- Quantitative table -->
+          <h2 class="title is-3 has-text-centered">
+            Quantitative comparison with other methods
+          </h2>
+
+          <p>
+            Quantitative evaluation results for the Multi-Exposure Fusion and Multi-Focus Fusion task. The red and blue
+            highlights indicate the highest and second-highest scores
+          </p>
+
+          <img id="comparison" width="100%" src="images/table1.png" alt="Comparison with other methods" />
+
+          <p>
+            Quantitative evaluation results for the Infrared-Visible Fusion and Medical Video Fusion task. The red and
+            blue highlights indicate the highest and second-highest scores
+          </p>
+
+          <img id="comparison" width="100%" src="images/table2.png" alt="Comparison with other methods" />
+
+          <p>
+            Quantitative evaluation results for the low-resolution Multi-Exposure Fusion (540p) and Multi-Focus Fusion (480p) task. The red and
+            blue highlights indicate the highest and second-highest scores
+          </p>
+
+          <img id="comparison" width="100%" src="images/table3.png" alt="Comparison with other methods" />
+
+          <p class="mt-5">
+            Refer to the main paper linked above for more details on qualitative, quantitative, and ablation studies.
+          </p>
+
+          <br>
+          <h2 class="title has-text-centered">
+            Qualitative Video Comparison
+          </h2>
+          <!-- For a new group, change all `_a3` to `_a3` -->
+          <video id="myVideo_a3" muted autoplay="autoplay" loop="loop" width="100%" controls playsinline></video>
+          <div width="100%" class="pages" id="page_a3">
+            <img src="./images/arrow-left-round.svg" />
+            <img src="./images/circle-small.svg" />
+            <img src="./images/circle-small.svg" />
+            <img src="./images/circle-small.svg" />
+            <img src="./images/circle-small.svg" />
+            <img src="./images/circle-small.svg" />
+            <img src="./images/arrow-right-round.svg" />
+          </div>
+          <script>
+            $(function () {
+              let src = [
+                "video/comparision_video/Multi-exposure-Video-Fusion-1.mp4",
+                "video/comparision_video/Multi-exposure-Video-Fusion-2.mp4",
+                "video/comparision_video/Multi-focus-Video-Fusion.mp4",
+                "video/comparision_video/Infrared-Visible-Video-Fusion.mp4",
+                "video/comparision_video/Medical-Video-Fusion.mp4",
+              ];
+              const player = $("#myVideo_a3")[0];
+              const button = $("#page_a3 img");
+              const size = src.length;
+              let index = 0;
+              let old = -1;
+              function go() {
+                if (old >= 0) {
+                  button[old + 1].src = btn_normal.src;
+                }
+                button[index + 1].src = btn_selected.src;
+                old = index;
+                player.src = src[index];
+                player.load();
+              }
+              go();
+              button.click(function () {
+                let x = $(this).index();
+                if (x == 0) {
+                  if (index > 0) {
+                    index--;
+                    go();
+                  }
+                } else if (x == size + 1) {
+                  if (index < size - 1) {
+                    index++;
+                    go();
+                  }
+                } else if (x > 0 && x <= size) {
+                  index = x - 1;
+                  go();
+                }
+              });
+            });
+          </script>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Qualitative Image Comparison -->
+  <section class="hero teaser is-small">
+    <div class="container is-max-desktop has-text-centered">
+      <div class="hero-body">
+        <h2 class="title has-text-centered">
+          Qualitative Image Comparison
+        </h2>
+        <!-- 图像展览部分 -->
+        <div class="content has-text-centered">
+          <img id="galleryImage_a2" width="100%" src="images/fusion-Youtube.png" alt="VF-Bench Gallery Image" />
+          <p id="imageTitle_a2" class="mt-2"><b>Multi-Exposure Video Fusion Comparison</b></p>
+
+          <!-- 小圆点和左右箭头 -->
+          <div class="pages" id="img_page_a2" style="margin-top: 1rem;">
+            <img src="./images/arrow-left-round.svg" style="cursor: pointer;" />
+            <img src="./images/circle-small.svg" style="cursor: pointer;" />
+            <img src="./images/circle-small.svg" style="cursor: pointer;" />
+            <img src="./images/circle-small.svg" style="cursor: pointer;" />
+            <img src="./images/circle-small.svg" style="cursor: pointer;" />
+            <img src="./images/arrow-right-round.svg" style="cursor: pointer;" />
+          </div>
+        </div>
+
+        <script>
+          $(function () {
+            let src = [
+              "images/fusion-Youtube.png",
+              "images/fusion-DAVIS.png",
+              "images/fusion-VTMOT.png",
+              "images/fusion-Havard.png",
+            ];
+            let titles = [
+              "Multi-Exposure Video Fusion Comparison",
+              "Multi-Focus Video Fusion Comparison",
+              "Infrared-Visible Video Fusion Comparison",
+              "Medical Video Fusion Comparison"
+            ];
+            const viewer = $("#galleryImage_a2");
+            const titlebox = $("#imageTitle_a2");
+            const button = $("#img_page_a2 img");
+            const size = src.length;
+            let index = 0;
+            let old = -1;
+
+            function go() {
+              if (old >= 0) {
+                button[old + 1].src = $("#btn_normal").attr("src");
+              }
+              button[index + 1].src = $("#btn_selected").attr("src");
+              old = index;
+              viewer.attr("src", src[index]);
+              titlebox.text(titles[index]);
+            }
+
+            go();
+
+            button.click(function () {
+              let x = $(this).index();
+              if (x == 0) {
+                if (index > 0) {
+                  index--;
+                  go();
+                }
+              } else if (x == size + 1) {
+                if (index < size - 1) {
+                  index++;
+                  go();
+                }
+              } else if (x > 0 && x <= size) {
+                index = x - 1;
+                go();
+              }
+            });
+          });
+        </script>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    $(window).on("load", function () {
+      bulmaCarousel.attach("#results-carousel-teaser", {
+        slidesToScroll: 1,
+        slidesToShow: 1,
+        loop: true,
+        autoplay: true,
+      });
+
+      bulmaCarousel.attach("#results-carousel-horizontal", {
+        slidesToScroll: 1,
+        slidesToShow: 5,
+        loop: true,
+        autoplay: true,
+      });
+
+      $(".twentytwenty-container-top").twentytwenty({
+        before_label: "Input",
+        after_label: "Ours",
+        default_offset_pct: 0.75,
+      });
+
+      $(".twentytwenty-container-bottom").twentytwenty({
+        before_label: "LeRes",
+        after_label: "Ours",
+        default_offset_pct: 0.5,
+      });
+
+      $(".results-carousel").css({
+        "max-height": "2000px",
+        visibility: "visible",
+      });
+    });
+  </script>
+
+  <section class="section pt-0" id="BibTeX">
+    <div class="container is-max-desktop content">
+      <h2 class="title">Citation</h2>
+      <pre class="selectable">
+<code>
+  @InProceedings{zhao2025unified,
+    title={A Unified Solution to Video Fusion: From Multi-Frame Learning to Benchmarking},
+    author={Zhao, Zixiang and Bai, Haowen and Ke, Bingxin and Cui, Yukun and Deng, Lilun and Zhang, Yulun and Zhang, Kai and
+    Schindler, Konrad},
+    booktitle = {Advances in Neural Information Processing Systems (NeurIPS)},
+    year={2025}
+  }
+</code>
+</pre>
+    </div>
+  </section>
+
+
+  <footer class="footer pt-4 pb-0">
+    <div class="container">
+      <div class="columns is-centered">
+        <div class="column is-8">
+          <div class="content">
+            <p>
+              Website template based on
+              <a href="https://github.com/nerfies/nerfies.github.io">
+                Nerfies
+              </a>
+              and licensed under
+              <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">
+                CC-BY-SA-4.0</a>.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+
+</html>
