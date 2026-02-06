@@ -77,10 +77,9 @@
                 <a href="https://openreview.net/profile?id=~Lilun_Deng1" rel="noopener noreferrer">
                   Lilun Deng</a><sup>2</sup>,
               </span>
-                            <!-- <br /> -->
               <span class="author-block">
                 <a href="https://haowenbai.github.io/" rel="noopener noreferrer">
-                  Haowen Bai</a><sup>2</sup>,
+                  Haowen Bai</a><sup>3</sup>,
               </span>
               <span class="author-block">
                 <a href="https://htqin.github.io/" rel="noopener noreferrer">
@@ -88,7 +87,7 @@
               </span>
               <span class="author-block">
                 <a href="https://hi-fengtao.github.io/" rel="noopener noreferrer">
-                  Tao Feng</a><sup>3</sup>,
+                  Tao Feng</a><sup>4</sup>,
               </span>
               <span class="author-block">
                 <a href="https://scholar.google.com/citations?user=FZuNgqIAAAAJ&hl=en" rel="noopener noreferrer">
@@ -194,25 +193,28 @@
   <img id="btn_selected" src="./images/circle-shadowed.svg" style="display: none" />
   <img id="btn_normal" src="./images/circle-small.svg" style="display: none" />
 
-  <!-- Gallery -->
   <section class="hero teaser is-small is-light">
     <div class="container is-max-desktop has-text-centered">
       <div class="hero-body">
         <h2 class="title is-3">Video Fusion Gallery</h2>
-        <!-- For a new group, change all `_a1` to `_a2` -->
-        <video id="myVideo_a1" muted autoplay="autoplay" loop="loop" width="100%" controls playsinline></video>
-        <!-- small circles, should correspond to number of videos -->
+        <video id="myVideo_a1" muted autoplay="autoplay" loop="loop" width="100%" controls playsinline
+          preload="metadata"></video>
+
         <div width="100%" class="pages" id="page_a1">
-          <img src="./images/arrow-left-round.svg" />
-          <img src="./images/circle-small.svg" />
-          <img src="./images/circle-small.svg" />
-          <img src="./images/circle-small.svg" />
-          <img src="./images/circle-small.svg" />
-          <img src="./images/circle-small.svg" />
-          <img src="./images/arrow-right-round.svg" />
+          <img src="./images/arrow-left-round.svg" style="cursor: pointer;" />
+          <img src="./images/circle-small.svg" style="cursor: pointer;" />
+          <img src="./images/circle-small.svg" style="cursor: pointer;" />
+          <img src="./images/circle-small.svg" style="cursor: pointer;" />
+          <img src="./images/circle-small.svg" style="cursor: pointer;" />
+          <img src="./images/circle-small.svg" style="cursor: pointer;" />
+          <img src="./images/arrow-right-round.svg" style="cursor: pointer;" />
         </div>
+
         <script>
           $(function () {
+            const ICON_SELECTED = $("#btn_selected").attr("src");
+            const ICON_NORMAL = $("#btn_normal").attr("src");
+
             let src = [
               "video/ours/MEF1.mp4",
               "video/ours/MEF2.mp4",
@@ -221,35 +223,33 @@
               "video/ours/MVF.mp4",
             ];
             const player = $("#myVideo_a1")[0];
-            const button = $("#page_a1 img");
+            const buttons = $("#page_a1 img");
             const size = src.length;
             let index = 0;
-            let old = -1;
-            function go() {
-              if (old >= 0) {
-                button[old + 1].src = btn_normal.src;
+            let oldIndex = -1;
+
+            function updateGallery() {
+              if (oldIndex >= 0) {
+                buttons[oldIndex + 1].src = ICON_NORMAL;
               }
-              button[index + 1].src = btn_selected.src;
-              old = index;
+              buttons[index + 1].src = ICON_SELECTED;
+              oldIndex = index;
+
               player.src = src[index];
               player.load();
             }
-            go();
-            button.click(function () {
+
+            updateGallery();
+
+            buttons.click(function () {
               let x = $(this).index();
-              if (x == 0) {
-                if (index > 0) {
-                  index--;
-                  go();
-                }
-              } else if (x == size + 1) {
-                if (index < size - 1) {
-                  index++;
-                  go();
-                }
+              if (x === 0) {
+                if (index > 0) { index--; updateGallery(); }
+              } else if (x === size + 1) {
+                if (index < size - 1) { index++; updateGallery(); }
               } else if (x > 0 && x <= size) {
                 index = x - 1;
-                go();
+                updateGallery();
               }
             });
           });
@@ -267,7 +267,7 @@
           <div class="content has-text-justified">
             <h2 class="title is-3 has-text-centered">How MambaVF Works</h2>
             <img id="method_inference" width="100%" src="images/method.jpg" alt="Method" />
-            <p>
+            <p style="text-align: center;">
               Detailed illustration of our MambaVF architecture.
             </p>
           </div>
@@ -283,7 +283,8 @@
         <h2 class="title is-3 has-text-centered">
           Qualitative Video Comparison
         </h2>
-        <video id="myVideo_a3" muted autoplay="autoplay" loop="loop" width="100%" controls playsinline></video>
+        <video id="myVideo_a3" muted autoplay="autoplay" loop="loop" width="100%" controls playsinline
+          preload="metadata"></video>
         <div width="100%" class="pages" id="page_a3" style="margin-top: 1rem;">
           <img src="./images/arrow-left-round.svg" style="cursor: pointer;" />
           <img src="./images/circle-small.svg" style="cursor: pointer;" />
@@ -295,7 +296,10 @@
         </div>
         <script>
           $(function () {
-            let src = [
+            const ICON_SELECTED = $("#btn_selected").attr("src");
+            const ICON_NORMAL = $("#btn_normal").attr("src");
+
+            const src = [
               "video/comparision_video/Multi-exposure-Video-Fusion-1.mp4",
               "video/comparision_video/Multi-exposure-Video-Fusion-2.mp4",
               "video/comparision_video/Multi-focus-Video-Fusion.mp4",
@@ -303,33 +307,32 @@
               "video/comparision_video/Medical-Video-Fusion.mp4",
             ];
             const player = $("#myVideo_a3")[0];
-            const button = $("#page_a3 img");
+            const buttons = $("#page_a3 img");
             const size = src.length;
             let index = 0;
-            let old = -1;
-            // 获取正确的按钮图标路径
-            const btn_selected_src = $("#btn_selected").attr("src");
-            const btn_normal_src = $("#btn_normal").attr("src");
+            let oldIndex = -1;
 
             function go() {
-              if (old >= 0) {
-                // 使用获取到的路径
-                button[old + 1].src = btn_normal_src;
+              if (oldIndex >= 0) {
+                buttons[oldIndex + 1].src = ICON_NORMAL;
               }
-              button[index + 1].src = btn_selected_src;
-              old = index;
+              buttons[index + 1].src = ICON_SELECTED;
+              oldIndex = index;
+
               player.src = src[index];
               player.load();
             }
+
             go();
-            button.click(function () {
+
+            buttons.click(function () {
               let x = $(this).index();
-              if (x == 0) {
+              if (x === 0) {
                 if (index > 0) {
                   index--;
                   go();
                 }
-              } else if (x == size + 1) {
+              } else if (x === size + 1) {
                 if (index < size - 1) {
                   index++;
                   go();
@@ -346,38 +349,37 @@
   </div>
 </section>
 
-<section class="section pt-0">
-  <div class="container is-max-desktop">
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <br>
-        <h2 class="title is-3 has-text-centered">
-          Quantitative comparison with other methods
-        </h2>
+  <section class="section pt-0">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <br>
+          <h2 class="title is-3 has-text-centered">
+            Quantitative comparison with other methods
+          </h2>
 
-        <p class="mt-4">
-          Quantitative evaluation results for the Multi-Exposure Fusion (540p) and Multi-Focus Fusion (480p) task. The red and blue
-          highlights indicate the highest and second-highest scores
-        </p>
+          <p class="mt-4">
+            Quantitative evaluation results for the Multi-Exposure Fusion (540p) and Multi-Focus Fusion (480p) task. The red and blue
+            highlights indicate the highest and second-highest scores
+          </p>
 
-        <img id="comparison1" width="100%" src="images/table1.png" alt="Comparison table 1" />
+          <img id="comparison1" width="100%" src="images/table1.png" alt="Comparison table 1" />
 
-        <p class="mt-4">
-          Quantitative evaluation results for the Infrared-Visible Fusion and Medical Video Fusion task. The red and
-          blue highlights indicate the highest and second-highest scores
-        </p>
+          <p class="mt-4">
+            Quantitative evaluation results for the Infrared-Visible Fusion and Medical Video Fusion task. The red and
+            blue highlights indicate the highest and second-highest scores
+          </p>
 
-        <img id="comparison2" width="100%" src="images/table2.png" alt="Comparison table 2" />
+          <img id="comparison2" width="100%" src="images/table2.png" alt="Comparison table 2" />
 
-        <p class="mt-5 mb-5">
-          Refer to the main paper linked above for more details on qualitative, quantitative, and ablation studies.
-        </p>
+          <p class="mt-5 mb-5">
+            Refer to the main paper linked above for more details on qualitative, quantitative, and ablation studies.
+          </p>
 
+        </div>
       </div>
     </div>
-  </div>
-</section>
-<section class="hero teaser is-small">
+  </section>
 
   <!-- Qualitative Image Comparison -->
   <section class="hero is-light section">
