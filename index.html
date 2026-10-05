@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
   <meta charset="utf-8" />
@@ -23,6 +23,8 @@
   <link rel="stylesheet" href="./css/twentytwenty.css" />
   <link rel="stylesheet" href="./css/index.css" />
   <link rel="stylesheet" href="./css/pages.css" />
+  <link rel="stylesheet" href="./css/modern.css" />
+  <script defer src="./js/modern.js"></script>
 
   <script src="./js/jquery-3.2.1.min.js"></script>
   <script src="./js/jquery.event.move.js"></script>
@@ -49,8 +51,26 @@
     src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
 
-<body>
-  <section class="hero">
+<body class="modern-site">
+  <a class="skip-link" href="#overview">Skip to content</a>
+  <div class="reading-progress" aria-hidden="true"><span></span></div>
+  <header class="site-header">
+    <nav class="site-nav" aria-label="Main navigation">
+      <a class="nav-brand" href="#home" aria-label="MambaVF home">
+        <svg class="brand-mark" viewBox="0 0 36 36" fill="none" aria-hidden="true">
+          <path d="M6 26V10a4 4 0 0 1 8 0v16a4 4 0 0 0 8 0V10a4 4 0 0 1 8 0v16" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+          <circle cx="30" cy="26" r="3" fill="currentColor"/>
+        </svg>
+        <span>Mamba<span class="brand-accent">VF</span></span>
+      </a>
+      <div class="nav-links">
+        <a href="#overview">Overview</a><a href="#method">Method</a><a href="#results">Results</a><a href="#BibTeX">Citation</a>
+      </div>
+      <a class="nav-paper" href="https://arxiv.org/abs/2602.06017">Read paper <span aria-hidden="true">↗</span></a>
+    </nav>
+  </header>
+
+  <section class="project-section hero-intro hero" id="home">
     <div class="hero-body">
       <div class="container is-max-desktop">
         <div class="columns is-centered">
@@ -64,7 +84,7 @@
             </h3> -->
 
             <!-- Authors -->
-            <div class="is-size-5 publication-authors">
+            <div class="is-size-5 publication-authors author-names">
               <span class="author-block">
                 <a href="https://zhaozixiang1228.github.io/" rel="noopener noreferrer">
                   Zixiang Zhao</a><sup>1</sup>,
@@ -95,12 +115,12 @@
               </span>
             </div>
             <!-- Affiliations -->
-            <div class="is-size-5 publication-authors" style="margin-top: 12px;">
+            <div class="is-size-5 publication-authors affiliation-row" style="margin-top: 12px;">
               <span class="author-block"><sup>1</sup>&nbsp;ETH Zürich</span>&ensp;
               <span class="author-block"><sup>2</sup>&nbsp;Xi'an Jiaotong University</span>&ensp;
               <span class="author-block"><sup>3</sup>&nbsp;Nanyang Technological University</span>
             </div>
-            <div class="is-size-5 publication-authors">
+            <div class="is-size-5 publication-authors affiliation-row">
               <span class="author-block"><sup>4</sup>&nbsp;Hong Kong Polytechnic University</span>&ensp;
               <span class="author-block"><sup>5</sup>&nbsp;Tsinghua University</span>
             </div>
@@ -150,6 +170,12 @@
                   </a> </span> -->
               </div>
             </div>
+
+            <div class="hero-metrics" aria-label="Efficiency compared with UniVF">
+              <div><strong>5.7<span>%</span></strong><span>Parameters vs. UniVF</span></div>
+              <div><strong>13.4<span>%</span></strong><span>FLOPs vs. UniVF</span></div>
+              <div><strong>2.1<span>×</span></strong><span>Inference speedup</span></div>
+            </div>
           </div>
         </div>
       </div>
@@ -157,11 +183,11 @@
   </section>
 
   <!-- Teaser image-->
-  <section class="hero teaser">
+  <section class="project-section hero teaser" id="teaser">
     <div class="container is-max-desktop">
       <div class="hero-body">
         <center>
-          <img src="images/teaser.jpg" border="0" width="100%">
+          <button class="figure-shell" type="button" aria-haspopup="dialog" aria-controls="image-lightbox" aria-label="Enlarge figure"><img src="images/teaser.jpg" border="0" width="100%" alt="MambaVF performance and efficiency comparison"></button>
         </center>
         <h2 class="subtitle has-text-centered">
           Compared with <a href="https://vfbench.github.io/" target="_blank" rel="noopener noreferrer">UniVF (NeurIPS'25)</a>, our MambaVF not only attains state-of-the-art performance on VF-Bench, but requires only <b>5.7%</b> of the parameters and <b>13.4%</b> of the FLOPs,
@@ -173,10 +199,11 @@
   <!-- End teaser image -->
 
   <!-- Paper abstract -->
-  <section class="section hero is-light">
+  <section class="project-section section hero is-light" id="overview">
     <div class="container is-max-desktop">
       <div class="columns is-centered has-text-centered">
         <div class="column is-four-fifths">
+          <p class="section-eyebrow">01 / Overview</p>
           <h2 class="title is-3">Abstract</h2>
           <div class="content has-text-justified">
             <p>
@@ -204,10 +231,11 @@
   <img id="btn_selected" src="./images/circle-shadowed.svg" style="display: none" />
   <img id="btn_normal" src="./images/circle-small.svg" style="display: none" />
 
-  <section class="hero teaser is-small is-light">
+  <section class="project-section hero teaser is-small is-light" id="gallery">
     <div class="container is-max-desktop has-text-centered">
       <div class="hero-body">
-        <h2 class="title is-3">Video Fusion Gallery</h2>
+        <p class="section-eyebrow">02 / Gallery</p>
+          <h2 class="title is-3">Video Fusion Gallery</h2>
         <video id="myVideo_a1" muted autoplay="autoplay" loop="loop" width="100%" controls playsinline
           preload="metadata"></video>
 
@@ -269,21 +297,22 @@
     </div>
   </section>
 
-  <section class="section pt-0">
+  <section class="project-section section pt-0" id="method">
     <div class="container is-max-desktop">
       <div class="columns is-centered has-text-centered">
         <div class="column is-four-fifths">
           <!-- UniVF architecture -->
           <br>
           <div class="content has-text-justified">
-            <h2 class="title is-3 has-text-centered">How MambaVF Works</h2>
-            <img id="method_inference" width="100%" src="images/method.jpg" alt="Method" />
+            <p class="section-eyebrow">03 / Architecture</p>
+          <h2 class="title is-3 has-text-centered">How MambaVF Works</h2>
+            <button class="figure-shell" type="button" aria-haspopup="dialog" aria-controls="image-lightbox" aria-label="Enlarge figure"><img id="method_inference" width="100%" src="images/method.jpg" alt="Method" /></button>
             <p style="text-align: center;">
               Detailed illustration of our MambaVF architecture.
             </p>
-            <div class="columns has-text-left mt-5">
+            <div class="columns has-text-left mt-5 innovation-grid">
               <div class="column is-half">
-                <div class="box has-background-white-ter" style="height: 100%;">
+                <div class="box has-background-white-ter innovation-card" style="height: 100%;">
                   <h3 class="title is-5">Mutual State Fusion (MuFuse) Mamba Encoder</h3>
                   <p>
                     Exchanges complementary information between source streams through reciprocal state interaction,
@@ -292,7 +321,7 @@
                 </div>
               </div>
               <div class="column is-half">
-                <div class="box has-background-white-ter" style="height: 100%;">
+                <div class="box has-background-white-ter innovation-card" style="height: 100%;">
                   <h3 class="title is-5">Spatio-Temporal Bidirectional (STB) Scanning</h3>
                   <p>
                     Captures spatial details and temporal dependencies through eight bidirectional scanning paths
@@ -307,11 +336,12 @@
     </div>
   </section>
 
-<section class="hero is-light section">
+<section class="project-section hero is-light section" id="video-comparison">
   <div class="container is-max-desktop">
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
-        <h2 class="title is-3 has-text-centered">
+        <p class="section-eyebrow">04 / Visualization</p>
+          <h2 class="title is-3 has-text-centered">
           Qualitative Video Comparison
         </h2>
         <video id="myVideo_a3" muted autoplay="autoplay" loop="loop" width="100%" controls playsinline
@@ -380,11 +410,12 @@
   </div>
 </section>
 
-  <section class="section pt-0">
+  <section class="project-section section pt-0" id="results">
     <div class="container is-max-desktop">
       <div class="columns is-centered has-text-centered">
         <div class="column is-four-fifths">
           <br>
+          <p class="section-eyebrow">05 / Benchmarks</p>
           <h2 class="title is-3 has-text-centered">
             Quantitative comparison with other methods
           </h2>
@@ -394,14 +425,14 @@
             highlights indicate the highest and second-highest scores
           </p>
 
-          <img id="comparison1" width="100%" src="images/table1.png" alt="Comparison table 1" />
+          <button class="figure-shell" type="button" aria-haspopup="dialog" aria-controls="image-lightbox" aria-label="Enlarge figure"><img id="comparison1" width="100%" src="images/table1.png" alt="Comparison table 1" /></button>
 
           <p class="mt-4">
             Quantitative evaluation results for the Infrared-Visible Fusion and Medical Video Fusion task. The red and
             blue highlights indicate the highest and second-highest scores
           </p>
 
-          <img id="comparison2" width="100%" src="images/table2.png" alt="Comparison table 2" />
+          <button class="figure-shell" type="button" aria-haspopup="dialog" aria-controls="image-lightbox" aria-label="Enlarge figure"><img id="comparison2" width="100%" src="images/table2.png" alt="Comparison table 2" /></button>
 
           <p class="mt-5 mb-5">
             Refer to the main paper linked above for more details on qualitative, quantitative, and ablation studies.
@@ -413,15 +444,16 @@
   </section>
 
   <!-- Qualitative Image Comparison -->
-  <section class="hero is-light section">
+  <section class="project-section hero is-light section" id="image-comparison">
     <div class="container is-max-desktop has-text-centered">
       <div class="hero-body">
-        <h2 class="title has-text-centered">
+        <p class="section-eyebrow">06 / A closer look</p>
+          <h2 class="title has-text-centered">
           Qualitative Image Comparison
         </h2>
         <!-- 图像展览部分 -->
         <div class="content has-text-centered">
-          <img id="galleryImage_a2" width="100%" src="images/fusion-Youtube.jpg" alt="VF-Bench Gallery Image" />
+          <button class="figure-shell" type="button" aria-haspopup="dialog" aria-controls="image-lightbox" aria-label="Enlarge figure"><img id="galleryImage_a2" width="100%" src="images/fusion-Youtube.jpg" alt="VF-Bench Gallery Image" /></button>
           <p id="imageTitle_a2" class="mt-2"><b>Multi-Exposure Video Fusion Comparison</b></p>
 
           <!-- 小圆点和左右箭头 -->
@@ -526,9 +558,10 @@
     });
   </script>
 
-  <section class="section pt-0" id="BibTeX">
+  <section class="project-section section pt-0" id="BibTeX">
     <div class="container is-max-desktop content">
-      <h2 class="title">Citation</h2>
+      <p class="section-eyebrow">07 / Citation</p>
+          <div class="citation-heading"><h2 class="title">Citation</h2><button class="copy-citation" type="button">Copy BibTeX <span aria-hidden="true">↗</span></button><span class="copy-status sr-only" role="status"></span></div>
       <pre class="selectable">
 <code>
   @article{zhao2026mambavfstatespacemodel,
@@ -542,6 +575,13 @@
     </div>
   </section>
 
+
+  <dialog class="image-lightbox" id="image-lightbox" aria-label="Enlarged figure">
+    <button class="image-lightbox-close" type="button" aria-label="Close enlarged figure" autofocus><span aria-hidden="true">×</span></button>
+    <div class="image-lightbox-stage">
+      <img alt="" draggable="false" />
+    </div>
+  </dialog>
 
   <footer class="footer pt-4 pb-0">
     <div class="container">
