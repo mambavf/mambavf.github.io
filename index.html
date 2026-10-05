@@ -83,11 +83,11 @@
               </span>
               <span class="author-block">
                 <a href="https://htqin.github.io/" rel="noopener noreferrer">
-                  Haotong Qin</a><sup>1</sup>,
+                  Haotong Qin</a><sup>4</sup>,
               </span>
               <span class="author-block">
                 <a href="https://hi-fengtao.github.io/" rel="noopener noreferrer">
-                  Tao Feng</a><sup>4</sup>,
+                  Tao Feng</a><sup>5</sup>,
               </span>
               <span class="author-block">
                 <a href="https://scholar.google.com/citations?user=FZuNgqIAAAAJ&hl=en" rel="noopener noreferrer">
@@ -96,12 +96,13 @@
             </div>
             <!-- Affiliations -->
             <div class="is-size-5 publication-authors" style="margin-top: 12px;">
-              <span class="author-block"><sup>1</sup>&nbsp;ETH Zürich</span>&nbsp;
-              <span class="author-block"><sup>2</sup>&nbsp;Xi'an Jiaotong University</span>
+              <span class="author-block"><sup>1</sup>&nbsp;ETH Zürich</span>&ensp;
+              <span class="author-block"><sup>2</sup>&nbsp;Xi'an Jiaotong University</span>&ensp;
+              <span class="author-block"><sup>3</sup>&nbsp;Nanyang Technological University</span>
             </div>
             <div class="is-size-5 publication-authors">
-              <span class="author-block"><sup>3</sup>&nbsp;Nanyang Technological University</span>&nbsp;
-              <span class="author-block"><sup>4</sup>&nbsp;Tsinghua University</span>
+              <span class="author-block"><sup>4</sup>&nbsp;Hong Kong Polytechnic University</span>&ensp;
+              <span class="author-block"><sup>5</sup>&nbsp;Tsinghua University</span>
             </div>
             <!-- Buttons -->
             <div class="column has-text-centered">
@@ -119,7 +120,7 @@
                 <!-- Code Link. -->
                 <span class="link-block">
                   <a href="https://github.com/Zhaozixiang1228/VF-MambaVF" rel="noopener noreferrer"
-                    class="external-link button is-normal is-rounded is-dark">
+                    class="external-link button is-normal is-rounded is-light">
                     <span class="icon">
                       <i class="fab fa-github"></i>
                     </span>
@@ -128,6 +129,15 @@
                       src="https://img.shields.io/github/stars/prs-eth/rollingdepth?style=for-the-badge&label=&color=333333&labelColor=333333"
                       alt="GitHub stars" style="margin-top: 3px" />
                     <span>🌟</span> -->
+                  </a>
+                </span>
+                <span class="link-block">
+                  <a href="#BibTeX" rel="noopener noreferrer"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fas fa-quote-right"></i>
+                    </span>
+                    <span>BibTeX</span>
                   </a>
                 </span>
                 <!-- Dataset link -->
@@ -154,7 +164,7 @@
           <img src="images/teaser.jpg" border="0" width="100%">
         </center>
         <h2 class="subtitle has-text-centered">
-          Compared with <a href="https://vfbench.github.io/" target="_blank" rel="noopener noreferrer">UniVF (NeurIPS'25)</a>, our MambaVF not only attains state-of-the-art performance on VF-Bench, but also requires only <b>7.75%</b> of the parameters and <b>11.21%</b> of the FLOPs,
+          Compared with <a href="https://vfbench.github.io/" target="_blank" rel="noopener noreferrer">UniVF (NeurIPS'25)</a>, our MambaVF not only attains state-of-the-art performance on VF-Bench, but requires only <b>5.7%</b> of the parameters and <b>13.4%</b> of the FLOPs,
           while achieving a <b>2.1×</b> speedup.
         </h2>
       </div>
@@ -170,17 +180,18 @@
           <h2 class="title is-3">Abstract</h2>
           <div class="content has-text-justified">
             <p>
-              Video fusion is a fundamental technique in various video processing tasks. However, existing video fusion methods
-              heavily rely on optical flow estimation and feature warping, resulting in severe computational overhead and limited
-              scalability. This paper presents <b>MambaVF</b>, an efficient video fusion framework based on state space models (SSMs) that
-              performs temporal modeling without explicit motion estimation. First, by reformulating video fusion as a sequential
-              state update process, MambaVF captures long-range temporal dependencies with linear complexity while significantly
-              reducing computation and memory costs. Second, MambaVF proposes a lightweight SSM-based fusion module that replaces
-              conventional flow-guided alignment via a spatio-temporal bidirectional scanning mechanism. This module enables efficient
-              information aggregation across frames. Extensive experiments across multiple benchmarks demonstrate that our MambaVF
-              achieves state-of-the-art performance in multi-exposure, multi-focus, infrared-visible, and medical video fusion tasks.
-              We highlight that MambaVF enjoys high efficiency, reducing up to <b>92.25%</b> of parameters and <b>88.79%</b> of computational FLOPs
-              and a <b>2.1×</b> speedup compared to existing methods.
+              Video fusion aims to integrate complementary information from multiple source videos while preserving
+              temporal consistency. Effective modeling of temporal dynamics is essential to this goal, yet existing
+              methods incur substantial computational overhead from optical flow estimation and feature warping. In
+              this paper, we present <b>MambaVF</b>, an efficient video fusion framework that uses state space model
+              (SSM) to achieve temporal modeling without explicit motion estimation. First, by formulating video
+              fusion as a sequential state update process, MambaVF captures long-range temporal dependencies with
+              linear complexity, significantly reducing computation and memory costs. Second, the lightweight SSM-based fusion module eliminates conventional flow-guided alignment. Instead, it introduces a mutual
+              state fusion module and a spatio-temporal bidirectional scanning mechanism to enable information
+              aggregation across video streams. Experiments on multiple benchmarks confirm that MambaVF reaches
+              state-of-the-art performance in different video fusion applications (multi-exposure, multi-focus,
+              infrared-visible, medical), while reducing parameters by &gt;90% and FLOPs by &gt;80%, resulting in
+              &gt;50% shorter runtime.
             </p>
           </div>
         </div>
@@ -270,6 +281,26 @@
             <p style="text-align: center;">
               Detailed illustration of our MambaVF architecture.
             </p>
+            <div class="columns has-text-left mt-5">
+              <div class="column is-half">
+                <div class="box has-background-white-ter" style="height: 100%;">
+                  <h3 class="title is-5">Mutual State Fusion (MuFuse) Mamba Encoder</h3>
+                  <p>
+                    Exchanges complementary information between source streams through reciprocal state interaction,
+                    without optical flow estimation or feature warping.
+                  </p>
+                </div>
+              </div>
+              <div class="column is-half">
+                <div class="box has-background-white-ter" style="height: 100%;">
+                  <h3 class="title is-5">Spatio-Temporal Bidirectional (STB) Scanning</h3>
+                  <p>
+                    Captures spatial details and temporal dependencies through eight bidirectional scanning paths
+                    shared by both sources.
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
